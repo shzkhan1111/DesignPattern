@@ -14,4 +14,10 @@ namespace Models.FactoryDPModel
         void onClick();
 
     }
+
+    public interface ICheckbox
+    {
+        void onCheck();
+        void onUnChecked();
+    }
 }

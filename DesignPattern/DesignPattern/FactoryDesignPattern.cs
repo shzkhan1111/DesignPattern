@@ -14,26 +14,15 @@ namespace DesignPattern.DesignPattern
     public class FactoryMethod
     {
 
-        public static Ibutton CreateButtonFactory(bool isHtml)
+        public static implementAbstractFactory AbstractCreateFactoryForButtonAndCheckboxes(bool isHtml)
         {
             if (isHtml)
             {
-                Action action = () =>
-                {
-                    Console.WriteLine("Default wndows ");
-                };
-                return new HTMLButton(action);
-
+                return new implementHTMLGroupControl();
             }
             else
             {
-                Action action = () =>
-                {
-                    Console.WriteLine("you selected html");
-                };
-                return new WindowButton(action);
-               
-
+                return new implementWindowsGroupControl();
             }
         }
     }
