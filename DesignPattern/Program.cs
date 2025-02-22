@@ -1,4 +1,6 @@
 ﻿using DesignPattern.DesignPattern;
+using Models.builder;
+using System.ComponentModel.DataAnnotations;
 
 
 var stopnow = false;
@@ -11,17 +13,22 @@ do
     Console.WriteLine("");
     #endregion
 
-    var isHtml = selectedOption == 'y';
-    var fact = FactoryMethod.AbstractCreateFactoryForButtonAndCheckboxes(isHtml);
+    var director = new Director();
+    var normalCarBuilder = new Carbuilder();
+    var truckBuilder = new Carbuilder();
+    var manual = new ManualBuilder();
 
-    var b = fact.createButton();
-    var c = fact.createcheckbox();
+    director.ConstructNormalCar(normalCarBuilder);
+    director.ConstructNormalTruck(truckBuilder);
+    director.BuildManual(manual);
 
-    b.Render();
-    b.onClick();
+    var prod1 = normalCarBuilder.getCar();
+    var prod2 = truckBuilder.getCar();
+    var prod3 = manual.getCarmanual();
 
-    c.onCheck();
-
+    Console.WriteLine($"{prod1.SeatNo} : {prod1.Engine}");
+    Console.WriteLine($"{prod2.SeatNo} : {prod2.Engine}");
+    Console.WriteLine($"{prod3.SeatNo} : {prod3.Engine}");
     #region useless
     Console.WriteLine("n to stop");
     Console.WriteLine("");
