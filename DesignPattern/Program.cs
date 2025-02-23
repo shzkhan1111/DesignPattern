@@ -84,20 +84,20 @@ using System.ComponentModel.DataAnnotations;
 //AdvancedRemoteControl advancedRemote = new AdvancedRemoteControl(radio);
 //advancedRemote.Mute();
 
-Product book = new Product("Book", 10);
-Product pen = new Product("Pen", 2);
-Items item = new Items("Book", 10);
-Items i2 = new Items("Pen", 2);
+//Product book = new Product("Book", 10);
+//Product pen = new Product("Pen", 2);
+//Items item = new Items("Book", 10);
+//Items i2 = new Items("Pen", 2);
 
-Box smallBox = new Box();
-smallBox.AddItem(book);
-smallBox.AddItem(pen);
+//Box smallBox = new Box();
+//smallBox.AddItem(book);
+//smallBox.AddItem(pen);
 
 
-Box biggerBox = new Box();
-biggerBox.AddItem(smallBox);
-biggerBox.AddItem(item);
-biggerBox.AddItem(i2);
+//Box biggerBox = new Box();
+//biggerBox.AddItem(smallBox);
+//biggerBox.AddItem(item);
+//biggerBox.AddItem(i2);
 
-Console.WriteLine($"Total price of bigBox: {biggerBox.GetPrice()}");
+//Console.WriteLine($"Total price of bigBox: {biggerBox.GetPrice()}");
 
