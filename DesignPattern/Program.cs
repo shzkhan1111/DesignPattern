@@ -1,10 +1,11 @@
 ﻿using DesignPattern.DesignPattern;
+using Models.Adapter;
 using Models.builder;
 using Models.PrototypeDesignPattern;
 using System.ComponentModel.DataAnnotations;
 
 
-var stopnow = false;
+//var stopnow = false;
 //do
 //{
 //    #region useless
@@ -26,15 +27,50 @@ var stopnow = false;
 
 //} while (!stopnow);
 
-ConstructorCirclePrototype constructorCircle = new ConstructorCirclePrototype(1, 5);
-constructorCircle.Draw();
-ConstructorCirclePrototype constructorCircleCopyContructor = constructorCircle.CloneCircleCopyConst() as ConstructorCirclePrototype;
+//ConstructorCirclePrototype constructorCircle = new ConstructorCirclePrototype(1, 5);
+//constructorCircle.Draw();
+//ConstructorCirclePrototype constructorCircleCopyContructor = constructorCircle.CloneCircleCopyConst() as ConstructorCirclePrototype;
 
-constructorCircleCopyContructor.Draw();
-constructorCircleCopyContructor.Radius = 5555;
+//constructorCircleCopyContructor.Draw();
+//constructorCircleCopyContructor.Radius = 5555;
 
 
-constructorCircleCopyContructor.Draw();
+//constructorCircleCopyContructor.Draw();
 
-var cc2 = constructorCircle.CloneCircleCopy();
-cc2.Draw();
+//var cc2 = constructorCircle.CloneCircleCopy();
+//cc2.Draw();
+
+
+//adapter Design Pattern 
+RoundHole keyHole = new RoundHole(5);
+RoundKey key = new RoundKey(5);
+RoundKey key1 = new RoundKey(6);
+
+var isFit = keyHole.FitsInsideKey(key.getRadius);
+Console.WriteLine(isFit);
+isFit = keyHole.FitsInsideKey(key1.getRadius);
+Console.WriteLine(isFit);
+
+SquareKey sk = new SquareKey("5");
+SquareKey sk1 = new SquareKey("15");
+
+
+
+SquareToKeyObjectAdapter adp1 = new SquareToKeyObjectAdapter(0, sk);
+SquareToKeyObjectAdapter adp2 = new SquareToKeyObjectAdapter(0, sk1);
+
+isFit = keyHole.FitsInsideKey(adp1.getRadius);
+Console.WriteLine(isFit);
+
+isFit = keyHole.FitsInsideKey(adp2.getRadius);
+Console.WriteLine(isFit);
+
+
+SquareToKeyClassAdapter clapt = new SquareToKeyClassAdapter("5");
+isFit = keyHole.FitsInsideKey(clapt.getRadius);
+Console.WriteLine(isFit);
+
+SquareToKeyClassAdapter clapt1 = new SquareToKeyClassAdapter("15");
+isFit = keyHole.FitsInsideKey(clapt1.getRadius);
+Console.WriteLine(isFit);
+
