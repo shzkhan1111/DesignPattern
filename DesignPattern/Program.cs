@@ -3,8 +3,10 @@ using Models;
 using Models.Adapter;
 using Models.builder;
 using Models.CompositeDesignPattern;
+using Models.DecoratorDesignPatterb;
 using Models.PrototypeDesignPattern;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 
 
 //var stopnow = false;
@@ -100,4 +102,18 @@ using System.ComponentModel.DataAnnotations;
 //biggerBox.AddItem(i2);
 
 //Console.WriteLine($"Total price of bigBox: {biggerBox.GetPrice()}");
+
+string salaryRecords = "Employee Salary Records";
+DecoratorPatternExample source = new FileDataSource("somefile.dat");
+source.WriteData(salaryRecords);
+Console.WriteLine();
+
+var source2 = new CompressionDecorator(source);
+source2.WriteData(salaryRecords);
+Console.WriteLine();
+
+var source3 = new EncryptionDecorator(source2);
+
+source3.WriteData(salaryRecords);
+Console.WriteLine();
 
