@@ -1,38 +1,40 @@
 ﻿using DesignPattern.DesignPattern;
 using Models.builder;
+using Models.PrototypeDesignPattern;
 using System.ComponentModel.DataAnnotations;
 
 
 var stopnow = false;
-do
-{
-    #region useless
-    Console.WriteLine("Please Enter your selected value");
-    Console.WriteLine("y for html");
-    var selectedOption = Console.ReadKey().KeyChar;
-    Console.WriteLine("");
-    #endregion
+//do
+//{
+//    #region useless
+//    Console.WriteLine("Please Enter your selected value");
+//    Console.WriteLine("y for html");
+//    var selectedOption = Console.ReadKey().KeyChar;
+//    Console.WriteLine("");
+//    #endregion
 
-    var director = new Director();
-    var normalCarBuilder = new Carbuilder();
-    var truckBuilder = new Carbuilder();
-    var manual = new ManualBuilder();
 
-    director.ConstructNormalCar(normalCarBuilder);
-    director.ConstructNormalTruck(truckBuilder);
-    director.BuildManual(manual);
 
-    var prod1 = normalCarBuilder.getCar();
-    var prod2 = truckBuilder.getCar();
-    var prod3 = manual.getCarmanual();
+//    #region useless
+//    Console.WriteLine("n to stop");
+//    Console.WriteLine("");
+//    var isstop = Console.ReadKey().KeyChar;
+//    stopnow = isstop == 'n';
+//    #endregion
 
-    Console.WriteLine($"{prod1.SeatNo} : {prod1.Engine}");
-    Console.WriteLine($"{prod2.SeatNo} : {prod2.Engine}");
-    Console.WriteLine($"{prod3.SeatNo} : {prod3.Engine}");
-    #region useless
-    Console.WriteLine("n to stop");
-    Console.WriteLine("");
-    var isstop = Console.ReadKey().KeyChar;
-    stopnow = isstop == 'n';
-    #endregion
-} while (!stopnow);
+
+//} while (!stopnow);
+
+ConstructorCirclePrototype constructorCircle = new ConstructorCirclePrototype(1, 5);
+constructorCircle.Draw();
+ConstructorCirclePrototype constructorCircleCopyContructor = constructorCircle.CloneCircleCopyConst() as ConstructorCirclePrototype;
+
+constructorCircleCopyContructor.Draw();
+constructorCircleCopyContructor.Radius = 5555;
+
+
+constructorCircleCopyContructor.Draw();
+
+var cc2 = constructorCircle.CloneCircleCopy();
+cc2.Draw();
