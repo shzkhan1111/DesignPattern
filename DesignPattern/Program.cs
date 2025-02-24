@@ -5,6 +5,7 @@ using Models.builder;
 using Models.CompositeDesignPattern;
 using Models.DecoratorDesignPatterb;
 using Models.Facade;
+using Models.FlyWeight;
 using Models.PrototypeDesignPattern;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
@@ -117,7 +118,13 @@ using System.Data.Common;
 
 //source3.WriteData(salaryRecords);
 //Console.WriteLine();
-Subsystem1 subsystem1 = new Subsystem1();
-Subsystem2 subsystem2 = new Subsystem2();
-Facade facade = new Facade(subsystem1, subsystem2);
-facade.Operate();
+//Subsystem1 subsystem1 = new Subsystem1();
+//Subsystem2 subsystem2 = new Subsystem2();
+//Facade facade = new Facade(subsystem1, subsystem2);
+//facade.Operate();
+Forest forest = new();
+forest.PlantTree(10, 20, "Oak", "Green", "Rough");
+forest.PlantTree(15, 25, "Pine", "Dark Green", "Smooth");
+forest.PlantTree(10, 20, "Oak", "Green", "Rough"); // Uses the existing flyweight
+
+forest.Draw("Canvas");
