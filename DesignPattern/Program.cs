@@ -4,6 +4,7 @@ using Models.Adapter;
 using Models.builder;
 using Models.CompositeDesignPattern;
 using Models.DecoratorDesignPatterb;
+using Models.Facade;
 using Models.PrototypeDesignPattern;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
@@ -103,17 +104,20 @@ using System.Data.Common;
 
 //Console.WriteLine($"Total price of bigBox: {biggerBox.GetPrice()}");
 
-string salaryRecords = "Employee Salary Records";
-DecoratorPatternExample source = new FileDataSource("somefile.dat");
-source.WriteData(salaryRecords);
-Console.WriteLine();
+//string salaryRecords = "Employee Salary Records";
+//DecoratorPatternExample source = new FileDataSource("somefile.dat");
+//source.WriteData(salaryRecords);
+//Console.WriteLine();
 
-var source2 = new CompressionDecorator(source);
-source2.WriteData(salaryRecords);
-Console.WriteLine();
+//var source2 = new CompressionDecorator(source);
+//source2.WriteData(salaryRecords);
+//Console.WriteLine();
 
-var source3 = new EncryptionDecorator(source2);
+//var source3 = new EncryptionDecorator(source2);
 
-source3.WriteData(salaryRecords);
-Console.WriteLine();
-
+//source3.WriteData(salaryRecords);
+//Console.WriteLine();
+Subsystem1 subsystem1 = new Subsystem1();
+Subsystem2 subsystem2 = new Subsystem2();
+Facade facade = new Facade(subsystem1, subsystem2);
+facade.Operate();
