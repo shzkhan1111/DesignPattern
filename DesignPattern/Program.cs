@@ -3,6 +3,7 @@ using Models;
 using Models.Adapter;
 using Models.builder;
 using Models.ChainOfResposibility;
+using Models.CommandDesignPattern;
 using Models.CompositeDesignPattern;
 using Models.DecoratorDesignPatterb;
 using Models.Enums;
@@ -15,18 +16,29 @@ using System.Data.Common;
 
 
 
-Logger consoleLogger = new ConsoleLogger(LogLevelEnum.Debug);
-Logger fileLogger = new FileLogger(LogLevelEnum.Warning);
-Logger emailLogger = new EmailLogger(LogLevelEnum.Error);
+//Logger consoleLogger = new ConsoleLogger(LogLevelEnum.Debug);
+//Logger fileLogger = new FileLogger(LogLevelEnum.Warning);
+//Logger emailLogger = new EmailLogger(LogLevelEnum.Error);
 
 
 
-consoleLogger.SetNextLogger(fileLogger);
-fileLogger.SetNextLogger(emailLogger);
+//consoleLogger.SetNextLogger(fileLogger);
+//fileLogger.SetNextLogger(emailLogger);
 
-Console.WriteLine("Logging messages:");
-//chain repeated for each cvall
-consoleLogger.LogMessage(LogLevelEnum.Debug, "This is a debug message.");
-consoleLogger.LogMessage(LogLevelEnum.Info, "This is an info message.");
-consoleLogger.LogMessage(LogLevelEnum.Warning, "This is a warning message.");
-consoleLogger.LogMessage(LogLevelEnum.Error, "This is an error message.");
+//Console.WriteLine("Logging messages:");
+////chain repeated for each cvall
+//consoleLogger.LogMessage(LogLevelEnum.Debug, "This is a debug message.");
+//consoleLogger.LogMessage(LogLevelEnum.Info, "This is an info message.");
+//consoleLogger.LogMessage(LogLevelEnum.Warning, "This is a warning message.");
+//consoleLogger.LogMessage(LogLevelEnum.Error, "This is an error message.");
+
+
+var editor = new TextEditor();
+ICommand copycommand = new CopyCommand(editor);
+ICommand pastecommand = new PasteCommand(editor);
+
+var copybutton = new Button(copycommand);
+var pastebutton = new Button(pastecommand);
+
+copybutton.click("I have something to do");
+pastebutton.click("");
