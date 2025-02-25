@@ -3,6 +3,7 @@ using Models;
 using Models.Adapter;
 using Models.builder;
 using Models.ChainOfResposibility;
+using Models.CommandDesignPattern;
 using Models.CompositeDesignPattern;
 using Models.DecoratorDesignPatterb;
 using Models.Enums;
