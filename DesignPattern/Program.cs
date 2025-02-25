@@ -8,6 +8,7 @@ using Models.DecoratorDesignPatterb;
 using Models.Enums;
 using Models.Facade;
 using Models.FlyWeight;
+using Models.IteratorDEsignPattern;
 using Models.PrototypeDesignPattern;
 using Models.Proxy;
 using System.ComponentModel.DataAnnotations;
@@ -15,18 +16,26 @@ using System.Data.Common;
 
 
 
-Logger consoleLogger = new ConsoleLogger(LogLevelEnum.Debug);
-Logger fileLogger = new FileLogger(LogLevelEnum.Warning);
-Logger emailLogger = new EmailLogger(LogLevelEnum.Error);
+//int[] numbers = { 1, 2, 3, 4, 5 };
+//NumberCollection collection = new NumberCollection(numbers);
+
+//// Create an iterator for the collection
+//IMyIterator iterator = collection.CreateIterator();
+
+//// Use the iterator to traverse the collection
+//Console.WriteLine("Iterating through the collection:");
+//while (iterator.HasNext())
+//{
+//    Console.WriteLine(iterator.Next());
+//}
 
 
+string[] strings = { "shahz", "zain", "ahgned", "khan", "khh" };
+StringCollection stringCollection = new StringCollection(strings);
 
-consoleLogger.SetNextLogger(fileLogger);
-fileLogger.SetNextLogger(emailLogger);
-
-Console.WriteLine("Logging messages:");
-//chain repeated for each cvall
-consoleLogger.LogMessage(LogLevelEnum.Debug, "This is a debug message.");
-consoleLogger.LogMessage(LogLevelEnum.Info, "This is an info message.");
-consoleLogger.LogMessage(LogLevelEnum.Warning, "This is a warning message.");
-consoleLogger.LogMessage(LogLevelEnum.Error, "This is an error message.");
+IMystringIterator mystringIterator = stringCollection.createIteratorForStringCollection();
+Console.WriteLine("Iterating through the collection:");
+while (mystringIterator.HasNext())
+{
+    Console.WriteLine(mystringIterator.Next());
+}
