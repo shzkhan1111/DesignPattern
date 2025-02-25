@@ -17,26 +17,21 @@ using System.Data.Common;
 
 
 
-//int[] numbers = { 1, 2, 3, 4, 5 };
-//NumberCollection collection = new NumberCollection(numbers);
 
-//// Create an iterator for the collection
-//IMyIterator iterator = collection.CreateIterator();
+Chatroom chatroom = new Chatroom();
 
-//// Use the iterator to traverse the collection
-//Console.WriteLine("Iterating through the collection:");
-//while (iterator.HasNext())
-//{
-//    Console.WriteLine(iterator.Next());
-//}
+User alice = new User("Alice");
+User bob = new User("Bob");
+User charlie = new User("Charlie");
 
+chatroom.RegisterUser(alice);
+chatroom.RegisterUser(bob);
+chatroom.RegisterUser(charlie);
 
-string[] strings = { "shahz", "zain", "ahgned", "khan", "khh" };
-StringCollection stringCollection = new StringCollection(strings);
+alice.SendMessageToUser("Hello Bob!", "Bob");
+bob.SendMessageToUser("Hi Alice!", "Alice");
+charlie.SendMessageToUser("Hey everyone!", "Alice");
+alice.SendMessageToUser("How's it going?", "Charlie");
 
-IMystringIterator mystringIterator = stringCollection.createIteratorForStringCollection();
-Console.WriteLine("Iterating through the collection:");
-while (mystringIterator.HasNext())
-{
-    Console.WriteLine(mystringIterator.Next());
-}
+// Try sending a message to a non-existent user
+alice.SendMessageToUser("Test message", "UnknownUser");
