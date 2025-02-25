@@ -10,6 +10,7 @@ using Models.Enums;
 using Models.Facade;
 using Models.FlyWeight;
 using Models.IteratorDEsignPattern;
+using Models.Memento;
 using Models.PrototypeDesignPattern;
 using Models.Proxy;
 using System.ComponentModel.DataAnnotations;
@@ -18,20 +19,26 @@ using System.Data.Common;
 
 
 
-Chatroom chatroom = new Chatroom();
+// Create the originator and caretaker
+Models.Memento.TextEditor editor = new Models.Memento.TextEditor();
+History history = new History();
 
-User alice = new User("Alice");
-User bob = new User("Bob");
-User charlie = new User("Charlie");
+editor.SetText("Hello");
+editor.SetCursorPosition(5);
+editor.SetScrollPosition(0);
+editor.DisplayState();
+//save the history
+history.Push(editor.Save());
 
-chatroom.RegisterUser(alice);
-chatroom.RegisterUser(bob);
-chatroom.RegisterUser(charlie);
+editor.SetText("Hello World");
+editor.SetCursorPosition(11);
+editor.SetScrollPosition(0);
+editor.DisplayState();
+history.Push(editor.Save());
 
-alice.SendMessageToUser("Hello Bob!", "Bob");
-bob.SendMessageToUser("Hi Alice!", "Alice");
-charlie.SendMessageToUser("Hey everyone!", "Alice");
-alice.SendMessageToUser("How's it going?", "Charlie");
+editor.Restore(history.Pop());
+editor.DisplayState();
 
-// Try sending a message to a non-existent user
-alice.SendMessageToUser("Test message", "UnknownUser");
+
+editor.Restore(history.Pop());
+editor.DisplayState();
