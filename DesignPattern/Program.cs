@@ -1,25 +1,17 @@
-﻿using Models.StateDesignPattern;
+﻿using Models.StradagyDesignPatten;
 
-DayOftheYear dayOftheYear = new DayOftheYear();
-bool isMorning = false;
-bool doContinue = true;
-
-
-
-do{
-    dayOftheYear.IsDay = isMorning;
-    if (isMorning)
+for (int i = 0; i < 2; i++)
+{
+    if (i % 2 == 0)
     {
-        dayOftheYear.ChangeState(new MorningState());
+        Console.WriteLine("Not Enough Memory");
+        SortingMach sortingMach = new SortingMach(new BubbleSort());
+        sortingMach.sortitout("", "");
     }
     else
     {
-        dayOftheYear.ChangeState(new NightState());
+        Console.WriteLine("Enough Memory");
+        SortingMach sortingMach = new SortingMach(new MergeSort());
+        sortingMach.sortitout("", "");
     }
-    dayOftheYear.start();
-    var sel = Console.ReadKey().KeyChar;
-    Console.WriteLine("Press Y to continue");
-    doContinue = sel == 'y' || sel == 'Y';
-    isMorning = !isMorning;
-
-}while (isMorning);
+}
